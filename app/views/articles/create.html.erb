@@ -1,0 +1,68 @@
+
+  <%= form_with scope: :request, url: articles_path, local: true do |form| %>
+    <table style="border: 1px solid black; width:80%; margin-left:10%; margin-bottom:15px;">
+  <tr>
+  <td style="padding: 25px;">
+      <p>
+      <%= form.label :lang %><br>
+      <%= select( :request,:lang, [
+        ['English US','en-us'],
+        ['English-GB', 'en-gb'],
+        ['Spanish', 'es'],
+        ['Francais', 'fr'],
+        ['Thai', 'ta'],
+        ['Guyarati', 'gu'],
+        ['Hindi', 'hi'],
+        ['Leton', 'lv'],
+        ['Ruman', 'ro'],
+        ['Suajil', 'sw'],
+        ]) %>
+      </p>
+    
+      <p>
+          <%= form.label :text %><br>
+          <%= form.text_area :text %>
+      </p>
+
+      <div style="display:none;">
+          <%= form.label :response %><br>
+          <%= form.text_area :response %>
+      </div>
+    
+      <p>
+        <%= form.submit %>
+      </p>
+  </td>
+  <td style="padding: 25px;">
+             Response: <%= @request.response %>
+  </td>
+</tr>
+</table>
+<% end %>
+
+
+<table style="border: 1px solid black; width:80%;  
+  margin-left:10%;
+  border-collapse: separate;
+  border-spacing: 10px 25px;">
+  <tr>
+  <th colspan="10" style="text-transform:uppercase;">Previus Requests
+  </tr>
+  <tr>
+ <th width="10%">Lang</th>
+    <th width="10%">Text</th>
+    <th width="80%">Response</th>
+  </tr>
+ 
+  <% @requests.each do |prevReq| %>
+    <tr>
+      <td><%= prevReq.lang %></td>
+      <td><%= prevReq.text %></td>
+      <td><%= prevReq.response %></td>
+    </tr>
+  <% end %>
+
+  <tr><td><a href="/articles">Ver Todos</a>  </td></tr>
+
+</table>
+
